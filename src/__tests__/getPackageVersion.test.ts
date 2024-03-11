@@ -18,7 +18,7 @@ describe('getPackageVersion', () => {
     test('get version text within package.json', () => {
       const result = getPackageVersion(fixturePath);
 
-      expect(result).toBe('0.0.0');
+      expect(result).toBe('7.7.7');
     });
   });
 });

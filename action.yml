@@ -1,12 +1,18 @@
-name: 'Read package.json version'
-description: 'Output version numbers with package.json'
+name: "read package.json version"
+description: "outputs the package.json version"
+
 inputs:
   path:
-    description: 'Path of package.json'
+    description: "path of package.json"
     default: "./"
 outputs:
   version:
-    description: "Version of package"
+    description: "version of package"
+
 runs:
-  using: 'node12'
-  main: 'lib/main.js'
+  using: "node20"
+  main: "dist/index.js"
+
+branding:
+  icon: 'activity'
+  color: 'green'

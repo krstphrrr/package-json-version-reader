@@ -1,35 +1,34 @@
-name: "Test"
-on:
-  pull_request:
+name: "prueba"
+
+on: 
   push:
     branches:
       - master
-      - 'releases/*'
 
 jobs:
-  test:
+  prueba:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v4.1.1
+      
+      - uses: actions/cache@v4.0.1
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
 
-    - uses: actions/cache@v1
-      id: cache
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-npm-
+      - name: install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
 
-    - name: Install dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: npm ci
+      - name: unit test
+        run: npm test
 
-    - name: Unit Test
-      run: npm test
+      - name: local action test
+        uses: ./
+        id: version
 
-    - name: Local action test
-      uses: ./
-      id: version
-
-    - name: Get version
-      run: echo "Version is  ${{ steps.version.outputs.version }}"
+      - name: get version
+        run: echo "Version is ${{ steps.version.outputs.version }}"

@@ -11,7 +11,7 @@ async function run() {
 
     core.debug(`set output: version: ${result}`);
     core.setOutput('version', result);
-  } catch (error) {
+  } catch (error:any) {
     core.setFailed(error.message);
   }
 }
