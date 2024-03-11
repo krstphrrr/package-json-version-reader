@@ -1,4 +1,4 @@
-name: "read package.json version"
+name: "package.json version reader"
 description: "outputs the package.json version"
 
 inputs:
