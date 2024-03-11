@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Read package.json
-        uses: krstphrrr/read-package-json-version@v1
+        uses: krstphrrr/package-json-version-reader@v1
         id: package-version
 
       - name: Show version number
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Read package.json
-        uses: krstphrrr/read-package-json-version@v1
+        uses: krstphrrr/package-json-version-reader@v1
         with: 
           path: "./path/to/package.json"
         id: package-version
